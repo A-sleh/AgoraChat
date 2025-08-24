@@ -34,11 +34,13 @@ let on = true
 <style>
 .app-layout {
   height: 80vh;
-  width: 60vw;
+  width: 70vw;
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
   border: 1px solid white;
 }
+
+
 </style>
