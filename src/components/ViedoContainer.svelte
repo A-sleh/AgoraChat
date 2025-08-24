@@ -25,8 +25,6 @@ async function onLikeClicked() {
     
     <video id={"stream"}></video>
     
-    
-    
     {#if $streamReady.chat }
     <div class="likes-container">
         {$likes?.length || 0}

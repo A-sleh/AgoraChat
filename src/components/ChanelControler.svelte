@@ -52,9 +52,12 @@ async function joinToRtmChannel(userInfo) {
 
 
 async function onUserPublish( user, mediaType ) {
+    alert('hello')
     await $client.subscribe(user, mediaType);
+    
     if (mediaType === "video") {
         user.videoTrack.play("stream");
+        alert('vido')
     }
     if (mediaType === "audio") {
         user.audioTrack.play();
@@ -77,7 +80,7 @@ async function joinChannel(userInfo)  {
         userInfo.uid
     );
     
-    await $client.setClientRole(userInfo.role == 'host' ? CLIENT_ROLE_BROADCASTER  : CLIENT_ROLE_AUDIENCE);
+    await $client.setClientRole(userInfo.role);
     
 
     if (userInfo.role == CLIENT_ROLE_BROADCASTER) {

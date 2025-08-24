@@ -18,7 +18,7 @@ export async function GET({ url }) {
 
   const expirationTimeInSeconds = 3600;
   const currentTimestamp = Math.floor(Date.now() / 1000);
-  const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds;
+  const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds + 200000000;
 
   const token = RtcTokenBuilder.buildTokenWithUid(
     PUBLIC_AGORA_APP_ID,
