@@ -22,12 +22,10 @@ async function onLikeClicked() {
         leave
     </button>
     {/if}
-    {#if $userInfoInChanle?.role != "host" }
-      <video id="host-stream" ></video>
-    {/if}
-    {#if $userInfoInChanle?.role == "host" }
-      <video id="live-stream" ></video>
-    {/if}
+    
+    <video id={"stream"}></video>
+    
+    
     
     {#if $streamReady.chat }
     <div class="likes-container">

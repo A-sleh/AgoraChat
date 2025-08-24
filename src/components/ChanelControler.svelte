@@ -54,7 +54,7 @@ async function joinToRtmChannel(userInfo) {
 async function onUserPublish( user, mediaType ) {
     await $client.subscribe(user, mediaType);
     if (mediaType === "video") {
-        user.videoTrack.play("live-stream");
+        user.videoTrack.play("stream");
     }
     if (mediaType === "audio") {
         user.audioTrack.play();

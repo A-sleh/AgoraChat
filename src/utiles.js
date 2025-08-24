@@ -12,7 +12,7 @@ export const turnOnCamera = async (flag) => {
     }
     const videoTrackApi = await createCameraVideoTrack();
     videoTrack.set(videoTrackApi)
-    get(videoTrack).play("host-stream");
+    get(videoTrack).play("stream");
 };
 
 export const turnOnMicrophone = async (flag ) => {
@@ -27,7 +27,7 @@ export const turnOnMicrophone = async (flag ) => {
 
     const audioTrackApi = await createMicrophoneAudioTrack();
     audioTrack.set(audioTrackApi);
-    get(audioTrack).play();
+
 };
 
 export async function publishVideo() {
