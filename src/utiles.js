@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { audioTrack, client, isAudioOn, isVideoOn, userInfoInChanle, videoTrack, rtm ,streamReady ,likes, messages} from './routes/stores';
+import { audioTrack, isAudioOn, isVideoOn, userInfoInChanle, videoTrack,client ,rtm ,streamReady ,likes, messages} from './routes/stores';
 
 export const turnOnCamera = async (flag) => {
     const { createCameraVideoTrack } = await import('agora-rtc-sdk-ng')
@@ -32,13 +32,13 @@ export const turnOnMicrophone = async (flag ) => {
 
 export async function publishVideo() {
     await turnOnCamera(true);
-    await get(client).publishVideo(get(videoTrack));
+    await get(client).publish(get(videoTrack));
 };
 
 
 export async function publishAudio() {
     await turnOnMicrophone(true);
-    await get(client).publishAudio(get(audioTrack));
+    await get(client).publish(get(audioTrack));
 };
 
 export async function sendMessage(message) {
@@ -60,6 +60,14 @@ export async function unPublishAudio() {
     await get(client).unpublish(get(audioTrack));
 };
 
+export async function changeUserRole() {
+
+    userInfoInChanle.update( pre => ({
+        ...pre ,
+        role: "audience"
+    }))
+
+}
 
 async function leaveChatChannel() {
   

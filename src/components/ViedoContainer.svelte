@@ -22,7 +22,7 @@ async function onLikeClicked() {
         leave
     </button>
     {/if}
-    
+  
     <video id={"stream"}></video>
     
     {#if $streamReady.chat }

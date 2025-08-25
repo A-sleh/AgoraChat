@@ -5,6 +5,7 @@ import {AGORA_APP_CERTIFICATE} from "$env/static/private"
 import { PUBLIC_AGORA_APP_ID } from "$env/static/public"
 
 export async function GET({ url }) {
+  
   const channelName = url.searchParams.get("channelName");
   const userName = url.searchParams.get("userName") || "Unknown";
   const uid = parseInt(url.searchParams.get("uid")) || 0;
@@ -16,9 +17,9 @@ export async function GET({ url }) {
 
   let role = roleParam === "host" ? RtcRole.PUBLISHER : RtcRole.SUBSCRIBER;
 
-  const expirationTimeInSeconds = 3600;
+  const expirationTimeInSeconds = 360000;
   const currentTimestamp = Math.floor(Date.now() / 1000);
-  const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds + 200000000;
+  const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds ;
 
   const token = RtcTokenBuilder.buildTokenWithUid(
     PUBLIC_AGORA_APP_ID,

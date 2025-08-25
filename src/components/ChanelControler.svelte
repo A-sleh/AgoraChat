@@ -3,7 +3,7 @@
 import { PUBLIC_AGORA_APP_ID } from '$env/static/public';
 import { onMount } from 'svelte';
 import { rtm, AgoraRTM, client, isLoggedIn, likes, messages, streamReady, userInfoInChanle } from '../routes/stores';
-import { publishVideo, publishAudio } from '../utiles.js'
+import { publishVideo, publishAudio, changeUserRole } from '../utiles.js'
 
 let channeName = $state('')
 
@@ -52,16 +52,18 @@ async function joinToRtmChannel(userInfo) {
 
 
 async function onUserPublish( user, mediaType ) {
-    alert('hello')
+    
     await $client.subscribe(user, mediaType);
+
     
     if (mediaType === "video") {
         user.videoTrack.play("stream");
-        alert('vido')
     }
     if (mediaType === "audio") {
         user.audioTrack.play();
     }
+    
+    await changeUserRole()
 };
 
 async function onUserLeft( user, mediaType ) {
@@ -79,21 +81,21 @@ async function joinChannel(userInfo)  {
         userInfo.token || null,
         userInfo.uid
     );
-    
+
     await $client.setClientRole(userInfo.role);
     
-
     if (userInfo.role == CLIENT_ROLE_BROADCASTER) {
         publishVideo();
         publishAudio();
     }
-
+    
     // context
     streamReady.update((pre) => ({
         ...pre,
         stream: true
     }));
-    
+
+
     await joinToRtmChannel(userInfo);
 };
     
